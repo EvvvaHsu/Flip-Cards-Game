@@ -1,0 +1,130 @@
+#cards {
+    /* flex是軸, 在沒有設定的狀況下, 預設的狀況是row */
+    /* flex-wrap: 換行 */
+    display: flex;
+    flex-wrap: wrap;
+    width: 85%;   /* 新增：寬度和標頭一致 */
+    margin: 0 auto;  /* 新增：置中 */
+}
+
+.card {
+    /* 卡片在容器裡的排版 */
+    /* flex-basis(flex item在容器裡佔的比例% or px數), flex-grow, flex-shrink */
+    /* basis: 一排放13張: 100/13=7 ; grow: 如果容器裡還有剩餘空間, 會不會把剩餘空間吃掉? 0的意思是: 即使有剩餘, 也不會把剩餘空間填滿; shrink: 如果空間不夠, 會不會收縮自己的大小? 0和1是加權比例概念*/
+    /* vw是相對單位, 100vw是完整視窗大小 */
+    flex: 7% 1 1;   /* 修改0為1：卡片需要分配剩餘空間 */
+    height: 8vw;
+    border: 2px solid #e0e0e0;
+
+    margin: 2px;
+    /* 卡片邊距 */
+    box-sizing: border-box;
+    /* 設定 box-sizing*/
+
+    /* 卡片內部元素的排版 */
+    /* main axis */
+    /* space-around: 每個元素的左右margin是一樣的 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+
+.card img {
+    /* align-self是排交叉軸的時候用的, 橫向置中 */
+    max-width: 30%;
+    align-self: center;
+}
+
+.card p {
+    margin: 3px;
+    font-size: 10px;
+
+}
+
+
+.card p:last-child {
+    transform: rotate(180deg);
+}
+
+
+.back {
+    background: url('https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png');
+    background-size: cover;
+}
+
+.paired {
+    background-color: #dae0e3;
+}
+
+
+#header {
+    /* border: 2px solid red; */
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    /* 在這裡因為指定了主要軸是直的, 所以 align-item是橫的*/
+    align-items: flex-end;
+    width: 85%;
+}
+
+#header .title {
+    width: 100%;
+    display: flex;
+    /* 主要軸上的排版, 因為沒有指定, 所以主要軸是橫的 */
+    justify-content: flex-end;
+}
+
+#header .title img {
+    max-width: 3em;
+}
+
+#header .title h2 {
+    padding-left: 0.5em;
+}
+
+#header .score {
+    margin: 0;
+    color: #6c90ac;
+}
+
+#header .tried {
+    margin-top: 0;
+}
+
+
+.wrong {
+    animation-name: wrongAnimation;
+    animation-duration: 0.2s;
+    animation-iteration-count: 5;
+  }
+  @keyframes wrongAnimation {
+
+   
+    to {
+      border: 2px solid #ffd54f;
+    }
+  }
+
+
+  /** Game finished **/
+.completed {
+    position: absolute;
+    z-index: 999;
+    top: 33vh;
+    background-color: RGBA(232, 246, 254, 0.8);
+    width: 100vw;
+    padding: 50px 0;
+  }
+  .completed > p {
+    font-size: 1.5em;
+    color: black;
+    text-align: center;
+    margin: 0;
+  }
+  .completed > p:first-child {
+    font-size: 3em;
+    font-weight: 700;
+    color: #758d9a;
+  }
